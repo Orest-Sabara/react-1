@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prog Academy</title>
+</head>
+<body>
+
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        background-color: maroon;
+        color: white;
+    }
+</style>
+
+<script>
+
+    function Buy() {
+        let exchangeRate = prompt('Яку валюту до долара хочете подивитимь? Виберіть одну (BTC, UAH)');
+        if (exchangeRate === 'btc' || exchangeRate === 'BTC') {
+            let value = prompt(`USD до ${exchangeRate} 0,000050. Скільк доларів міняєте?`)
+            if (Number(value)) {
+                let isYes = confirm(`Ви можете купити ${value * 0.000050} BTC`)
+                if (isYes === true) {
+                    alert('Вітаю операція успішна!')
+                } else {
+                    alert('Попробуйте знову. щось пішло не так')
+                    Buy();
+                }
+            } else {
+                alert('Ви ввели не число')
+                Buy();
+            }
+        } else if (exchangeRate === 'uah' || exchangeRate === 'UAH') {
+            let value = prompt(`USD до ${exchangeRate} 37. Скільк доларів міняєте?`)
+            if (Number(value)) {
+                let isYes = confirm(`Ви можете купити ${value * 37} UAH`)
+                if (isYes === true) {
+                    alert('Вітаю операція успішна!')
+                } else {
+                    alert('Попробуйте знову. щось пішло не так')
+                    Buy();
+                }
+            } else {
+                alert('Ви ввели не число')
+                Buy();
+            }
+        } else {
+            alert('Не правильно ввели');
+            Buy();
+        }
+    }
+
+    Buy();
+
+</script>
+</body>
+</html>
