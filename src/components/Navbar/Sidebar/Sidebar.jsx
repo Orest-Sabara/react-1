@@ -8,7 +8,7 @@ const Sidebar = () => {
             <div className={s.father}>
                 <div className={s.child}>
                     <img
-                        src="https://play-lh.googleusercontent.com/tmASL-0Jg5bq3RKsneEFVCcAth0M7jFLI7alQQyKSEqrpvLuMfW4mfkw4iSkLCj9_zo"></img>
+                        src="https://www.meme-arsenal.com/memes/e35bba9c3d2095e1fc22a7d9fffe5f24.jpg"></img>
                     <div>Diana</div>
                 </div>
                 <div className={s.child}>
