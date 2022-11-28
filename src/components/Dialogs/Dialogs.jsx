@@ -2,20 +2,23 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import DialogsItem from "./DialogsItem/DialogsItem";
 import Message from "./Message/Message";
+import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/state";
 
 const Dialogs = (props) => {
 
-    let dialogsElement = props.state.dialogs
-        .map(dialog => <DialogsItem name={dialog.name} id={dialog.id}/>);
+    let state = props.store.getState().messagesPage;
 
-    let messagesElement = props.state.messages
-        .map(message => <Message value={message.chat}/>)
+    let dialogsElement = state.dialogs.map(dialog => <DialogsItem name={dialog.name} id={dialog.id}/>);
+    let messagesElement = state.messages.map(message => <Message value={message.chat}/>)
+    let newMessageBody = state.newMessageBody;
+    // let newMessageElement = React.createRef();
 
-    let newMessageElement = React.createRef();
-
-    let sendMessage = () => {
-        let text = newMessageElement.current.value;
-        alert (text);
+    let onSendMessageClick = () => {
+        props.store.dispatch(sendMessageCreator());
+    }
+    let onNewMessageChange = (ev) => {
+        let body = ev.target.value;
+        props.store.dispatch(updateNewMessageBodyCreator(body));
     }
 
 
@@ -26,10 +29,13 @@ const Dialogs = (props) => {
                     {dialogsElement}
                 </div>
                 <div className={s.messages}>
-                    {messagesElement}
+                    <div>{messagesElement}</div>
                     <div className={s.btnSend}>
-                        <textarea cols="50" rows="4" ref={newMessageElement}></textarea>
-                        <button onClick={ sendMessage }>send</button>
+                        <textarea cols={30} rows={4}
+                                  value={newMessageBody}
+                                  onChange={onNewMessageChange}
+                                  placeholder='Enter your message...'></textarea>
+                        <button onClick={ onSendMessageClick }>send</button>
                     </div>
                 </div>
             </div>

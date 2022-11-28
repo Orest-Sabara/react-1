@@ -6,7 +6,7 @@ import App from './App';
 import store from './redux/state';
 import {BrowserRouter} from "react-router-dom";
 
-// addPost('heyadwdsaamurai');
+// addPost('new message');
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -14,9 +14,10 @@ let rerenderEntireTree = (state) => {
     root.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App state={store.getState()}
-                     addPost={store.addPost.bind(store)}
-                     updateNewPostText={store.updateNewPostText.bind(store)}/>
+                <App state={state}
+                     dispatch={store.dispatch.bind(store)}
+                     store={store}
+                />
             </BrowserRouter>
         </React.StrictMode>
     );
